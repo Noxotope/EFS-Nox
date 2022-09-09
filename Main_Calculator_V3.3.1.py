@@ -1,12 +1,11 @@
 from decimal import *
 getcontext().prec = 9
-#9getcontext().Emax = 99999999999
 def calculate():
-	#from decimal import MAX_EMAX
-	#from decimal import Decimal
+	from decimal import Decimal
+	getcontext().prec = 9
 	print("What Are You Looking For?")
 	print("A. RP at certain amount of GEs")
-	print("B. BEs from boss at a specific level")
+	print("B. BEs received from a specific boss level")
 	print("C. Total BEs at a certain level")
 	print("D. Amount of GEs from BEs")
 	print("E. Water egg reduction")
@@ -24,13 +23,13 @@ def calculate():
 	if UC.upper() == "A":
 		Total_GE = input("Total GE earned:")
 		TG= float(Total_GE)
-		A= float(-0.0003*TG)
-		B= float(2.7182818284590452353602874713527**A)
-		C= float(B*23)
+		A= float(-0.0003 * TG)
+		B= float(2.7182818284590452353602874713527 ** A)
+		C= float(B * 23)
 		D= float(25-C)
-		E= float(D*.01)
+		E= float(D *.01)
 		F= Decimal(E)
-		TRP= float(E * 100)
+		TRP= float(F * 100)
 		TRPS= str(TRP)
 		Toe= str(E)
 		print("Multiplier:" + Toe)
@@ -40,7 +39,7 @@ def calculate():
 	if UC.upper() == "B":
 		Total_GE = input("Total GE earned:")
 		TG= float(Total_GE)
-		A= float(-0.0003*TG)
+		A= float(-0.0003 * TG)
 		B= float(2.7182818284590452353602874713527**A)
 		C= float(B*23)
 		D= float(25-C)
@@ -73,7 +72,6 @@ def calculate():
 		print("************************************************************************")
 	
 	if UC.upper() == "C":
-		from decimal import Decimal
 		Farm_lvlTot= input("Farm Level:")
 		Farm_lvlTotDeci= Decimal(Farm_lvlTot)
 		Farm_lvlTotDeci2= int(Farm_lvlTotDeci / 5)
@@ -83,8 +81,7 @@ def calculate():
 			import math
 			Best= []
 			for i in Farm_lvlTotRange:
-				#i == 0
-				Farm_lvlTotEqua= Decimal((i*5) - 80)
+				Farm_lvlTotEqua= Decimal((i * 5) - 80)
 				Farm_lvlTotEqua2= Decimal(Farm_lvlTotEqua / 25)
 				Farm_lvlTotEqua3Cont= Decimal(1.3)
 				Farm_lvlTotEqua3= Decimal(Farm_lvlTotEqua2 ** Farm_lvlTotEqua3Cont)
@@ -92,11 +89,9 @@ def calculate():
 				Best.append(Farm_lvlTotEqua4)
 				my_setSum= sum(Best)
 				my_setSumDeci= Decimal(my_setSum)
-			#print(my_setSumDeci)
 			EarthEggLevel= input("Earth Egg Level:")
 			EarthEggLevelDeci= Decimal(EarthEggLevel)
 			BETot_EquaR1= Decimal(10 * (EarthEggLevelDeci) ** 2)
-			#print(BETot_EquaR1)
 			BETot_EquaR1_1= Decimal(0.25)
 			BETot_EquaR1_2= Decimal(0.75)
 			BETot_EquaR2_1= Decimal(math.e)
@@ -121,7 +116,6 @@ def calculate():
 			TRP= float(E * 100)
 			TRPS= str(TRP)
 			Toe= str(E)
-			#print("Multiplier:" + Toe)
 			BETot_EquaRFin= Decimal(BETot_EquaR5 * F)
 			print(BETot_EquaRFin)
 		sigma(Farm_lvlTotRange)
