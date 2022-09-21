@@ -3,7 +3,6 @@ getcontext().prec = 9
 def calculate():
 	from decimal import Decimal
 	getcontext().prec = 9
-	#getcontext().Emax = 9999999999
 	print("What Are You Looking For?")
 	print("A. RP at certain amount of GEs")
 	print("B. BEs received from a specific boss level")
