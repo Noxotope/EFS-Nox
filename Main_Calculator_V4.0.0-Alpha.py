@@ -3,6 +3,7 @@ getcontext().prec = 9
 def calculate():
 	from decimal import Decimal
 	getcontext().prec = 9
+	#getcontext().Emax = 9999999999
 	print("What Are You Looking For?")
 	print("A. RP at certain amount of GEs")
 	print("B. BEs received from a specific boss level")
@@ -49,7 +50,7 @@ def calculate():
 		TRPS= str(TRP)
 		Toe= str(E)
 		print("Multiplier:" + Toe)
-		print("Rebirth Power" + TRPS + "%")
+		print("Rebirth Power:" + TRPS + "%")
 		EarthEggLevel = input("Earth Egg Level:")
 		Level= input("Farm Level:")
 		Farm_LevelDeci= Decimal(Level)
@@ -72,52 +73,38 @@ def calculate():
 		print("************************************************************************")
 	
 	if UC.upper() == "C":
+		import decimal
+		from decimal import Decimal
 		Farm_lvlTot= input("Farm Level:")
 		Farm_lvlTotDeci= Decimal(Farm_lvlTot)
-		Farm_lvlTotDeci2= int(Farm_lvlTotDeci / 5)
-		Farm_lvlTotDeci3= int(Farm_lvlTotDeci2 + 1)
+		Farm_lvlTotDeci2= Decimal(Farm_lvlTotDeci / 5)	
+		Farm_lvlTotDeci3= int(Farm_lvlTotDeci2)	
 		Farm_lvlTotRange= range(16, Farm_lvlTotDeci3)
 		def sigma(Farm_lvlTotRange):
 			import math
+			from math import e
+			import decimal
+			from decimal import Decimal
+			EE_CIn = int(input("Earth Egg Level:"))
+			EE_CInDeci = Decimal(10 * (EE_CIn ** 2) + 1)
+			#print(EE_CInDeci)
+			GE_CIn = int(input("Number of GEs:"))
+			GE_CInDeci = Decimal(GE_CIn)
+			GE_CEquaCon1 = Decimal(-0.0003)
+			GE_CEqua1 = Decimal(25 - 23 * (Decimal(math.e)) ** (GE_CEquaCon1 * GE_CInDeci))
+			GE_CEqua2 = Decimal(GE_CEqua1 / 100)
+			GE_CEqua2Deci = Decimal(GE_CEqua2)
+			F_LvlCCon1 = Decimal(1.3)
+			F_LvlC = Decimal(((Farm_lvlTotDeci - 80) / 25) ** F_LvlCCon1)
+			F_LvlCDeci = Decimal(F_LvlC)
 			Best= []
-			for i in Farm_lvlTotRange:
-				Farm_lvlTotEqua= Decimal((i * 5) - 80)
-				Farm_lvlTotEqua2= Decimal(Farm_lvlTotEqua / 25)
-				Farm_lvlTotEqua3Cont= Decimal(1.3)
-				Farm_lvlTotEqua3= Decimal(Farm_lvlTotEqua2 ** Farm_lvlTotEqua3Cont)
-				Farm_lvlTotEqua4= Decimal(Farm_lvlTotEqua3)
-				Best.append(Farm_lvlTotEqua4)
-				my_setSum= sum(Best)
-				my_setSumDeci= Decimal(my_setSum)
-			EarthEggLevel= input("Earth Egg Level:")
-			EarthEggLevelDeci= Decimal(EarthEggLevel)
-			BETot_EquaR1= Decimal(10 * (EarthEggLevelDeci) ** 2)
-			BETot_EquaR1_1= Decimal(0.25)
-			BETot_EquaR1_2= Decimal(0.75)
-			BETot_EquaR2_1= Decimal(math.e)
-			BETot_EquaR2_2= Decimal(BETot_EquaR2_1)
-			RadioactiveEggLevel= input("Radioactive Egg Level:")
-			RadioactiveEggLvlDeci= Decimal(RadioactiveEggLevel)
-			BETot_EquaR2_3= Decimal(-0.013)
-			BETot_EquaR2_4=Decimal(RadioactiveEggLvlDeci * BETot_EquaR2_3)
-			BETot_EquaR2_5= Decimal(1 - (BETot_EquaR2_1 ** BETot_EquaR2_4))
-			BETot_EquaR1_3= Decimal(BETot_EquaR1_1 + BETot_EquaR1_2 * BETot_EquaR2_5)
-			#Line 108 used to be BETot_EquaR1_3= Decimal((BETot_EquaR1_1 + BETot_EquaR1_1) * BETot_EquaR2_5) )
-			BETot_EquaR3= Decimal(BETot_EquaR1 * BETot_EquaR1_3)
-			BETot_EquaR5= Decimal(BETot_EquaR3 * my_setSumDeci)
-			Total_GE = input("Total GE earned:")
-			TG= float(Total_GE)
-			A= float(-0.0003*TG)
-			B= float(2.7182818284590452353602874713527**A)
-			C= float(B*23)
-			D= float(25-C)
-			E= float(D*.01)
-			F= Decimal(E)
-			TRP= float(E * 100)
-			TRPS= str(TRP)
-			Toe= str(E)
-			BETot_EquaRFin= Decimal(BETot_EquaR5 * F)
-			print(BETot_EquaRFin)
+			for i in (Farm_lvlTotRange):
+				GE_CEqua3 = Decimal(EE_CInDeci * (20 * (1 + GE_CEqua2Deci) ** (i - 20) + F_LvlCDeci))
+				#print(GE_CEqua3)
+				Best.append(GE_CEqua3)
+				My_SetSum = sum(Best)
+				My_SetSumDeci = Decimal(My_SetSum)
+			print("Estimated Amount of Total BEs by Specified Level:", My_SetSumDeci)
 		sigma(Farm_lvlTotRange)
 			
 	print("************************************************************************")
@@ -188,9 +175,9 @@ def calculate():
 		print("Water egg reduction % form:" + WE_ReducPSstr + "%")
 		M13_EELvlWant= input("13 Miscellaneous Easter egg levels Wanted:")
 		M13_EELvlWantedDeci= Decimal(M13_EELvlWant)
-		M13_EELvlCumCost= Decimal(2**(M13_EELvlWantedDeci+1)-3)
+		M13_EELvlCumCost= Decimal(2 **(M13_EELvlWantedDeci + 1) - 3)
 		WE_EffInv= Decimal(1 - WE_EquaDivDeci)
-		M13_EELvlCumCostFin= Decimal(M13_EELvlCumCost*WE_EffInv)
+		M13_EELvlCumCostFin= Decimal(M13_EELvlCumCost * WE_EffInv)
 		M13_EELvlCumCostAllFin= Decimal(M13_EELvlCumCostFin * 13)
 		M13_EELvlCumCostAllFinStr= str(M13_EELvlCumCostAllFin)
 		M13_EELvlCumCostFinDeci= Decimal(M13_EELvlCumCostFin)
@@ -560,7 +547,8 @@ def again():
 		print("************************************************************************")
 		calculate()
 	elif calc_again.upper() == "N":
-		print("Come back sexy boy")
+		print("Good Bye!")
+		os.system("cls")
 	else:
 		again()
 		
